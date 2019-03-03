@@ -18,9 +18,9 @@ if ! command -v bindgen > /dev/null 2>&1; then
     exit 1
 fi
 
-cd "$LIBNET_DIR/libnet"
 
-if ! [ -f NET_HEADER ]; then
+if ! [ -f "$NET_HEADER" ]; then
+    cd "$LIBNET_DIR/libnet"
     bash ../Prepare
     bash ../Build
 fi
@@ -33,6 +33,7 @@ bindgen \
     --raw-line '#[cfg(unix)] pub use libc::{sockaddr, timeval};' \
     --whitelist-function '^libnet_.*' \
     --whitelist-type '^libnet_.*' \
+    --whitelist-var '^LIBNET_.*'\
     --blacklist-type 'sockaddr' \
     --blacklist-type 'timeval' \
     --blacklist-type '__.*' \
