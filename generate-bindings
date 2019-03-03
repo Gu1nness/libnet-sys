@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -eu
+
+readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+readonly LIBNET_DIR="$DIR/libnet"
+
+if ! [ -f "$LIBNET_DIR/.git" ]; then
+  git submodule update --init
+fi
+
+readonly NET_HEADER="$LIBNET_DIR/libnet/include/libnet.h"
+readonly NET_BINDINGS="$DIR/src/bindings.rs"
+
+if ! command -v bindgen > /dev/null 2>&1; then
+    echo "bindgen must be installed" >&2
+    echo "to install: cargo install bindgen && rustup component add rustfmt-preview" >&2
+    exit 1
+fi
+
+cd "$LIBNET_DIR/libnet"
+
+if ! [ -f NET_HEADER ]; then
+    bash ../Prepare
+    bash ../Build
+fi
+
+bindgen \
+    "$NET_HEADER" \
+    --ctypes-prefix 'libc' \
+    --raw-line 'extern crate libc;' \
+    --raw-line 'pub use libc::FILE;' \
+    --raw-line '#[cfg(unix)] pub use libc::{sockaddr, timeval};' \
+    --whitelist-function '^libnet_.*' \
+    --whitelist-type '^libnet_.*' \
+    --blacklist-type 'sockaddr' \
+    --blacklist-type 'timeval' \
+    --blacklist-type '__.*' \
+    --blacklist-type 'FILE' \
+    --blacklist-type 'fpos_t' \
+    --distrust-clang-mangling \
+    --no-layout-tests \
+    -o "$NET_BINDINGS"

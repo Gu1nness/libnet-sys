@@ -1,0 +1,7 @@
+[package]
+name = "libnet-rs"
+version = "0.1.0"
+authors = ["Rémi Oudin <oudin@crans.org>"]
+edition = "2018"
+
+[dependencies]
