@@ -4,6 +4,7 @@ version = "0.1.1"
 authors = ["Rémi Oudin <oudin@crans.org>"]
 build = "build.rs"
 license-file = "LICENSE"
+description = "A quick binding of libnet for Rust"
 
 [dependencies]
 libc = "0.2.43"
