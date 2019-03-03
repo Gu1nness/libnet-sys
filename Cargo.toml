@@ -1,9 +1,9 @@
 [package]
 name = "libnet-rs"
-version = "0.1.2"
+version = "0.1.2.1"
 authors = ["Rémi Oudin <oudin@crans.org>"]
 build = "build.rs"
-license-file = "LICENSE"
+license= "GPLv3"
 description = "A quick binding of libnet for Rust"
 readme = "README.md"
 homepage = "https://github.com/Gu1nness/libnet-rs"
