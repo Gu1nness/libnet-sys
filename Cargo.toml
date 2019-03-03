@@ -2,6 +2,10 @@
 name = "libnet-rs"
 version = "0.1.0"
 authors = ["Rémi Oudin <oudin@crans.org>"]
-edition = "2018"
+build = "build.rs"
 
 [dependencies]
+libc = "0.2.43"
+
+[build-dependencies]
+pkg-config = "0.3.14"
