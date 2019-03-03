@@ -5,6 +5,7 @@ authors = ["Rémi Oudin <oudin@crans.org>"]
 build = "build.rs"
 license-file = "LICENSE"
 description = "A quick binding of libnet for Rust"
+readme = "README.md"
 homepage = "https://github.com/Gu1nness/libnet-rs"
 
 [dependencies]
