@@ -1,12 +1,12 @@
 [package]
-name = "libnet-rs"
-version = "0.1.4"
+name = "libnet-sys"
+version = "0.1.0"
 authors = ["Rémi Oudin <oudin@crans.org>"]
 build = "build.rs"
 license= "GPL-3.0-or-later"
 description = "A quick binding of libnet for Rust"
 readme = "README.md"
-homepage = "https://github.com/Gu1nness/libnet-rs"
+homepage = "https://github.com/Gu1nness/libnet-sys"
 
 [dependencies]
 libc = "0.2.43"
